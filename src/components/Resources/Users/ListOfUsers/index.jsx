@@ -2,7 +2,10 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import DataTable from "react-data-table-component";
 import "./styles.css";
+
 import { tableStyles } from "../../tableStyles";
+import { IconButton } from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 function ListOfUsers() {
   const [data, setData] = useState([]);
@@ -52,7 +55,11 @@ function ListOfUsers() {
       name: "Delete",
       button: true,
       cell: (row) => (
-        <button onClick={() => handleDelete(row.id)}>Delete</button>
+        <>
+          <IconButton onClick={() => handleDelete(row.id)} aria-label="delete">
+            <DeleteIcon />
+          </IconButton>
+        </>
       ),
     },
   ];

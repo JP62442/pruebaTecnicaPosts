@@ -6,6 +6,9 @@ import "./styles.css";
 import { AddPostBtn } from "../CreatePost";
 import { tableStyles } from "../../tableStyles";
 
+import { IconButton } from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
+
 function ListOfPosts() {
   const [data, setData] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
@@ -57,7 +60,11 @@ function ListOfPosts() {
       name: "Delete",
       button: true,
       cell: (row) => (
-        <button onClick={() => handleDelete(row.id)}>Delete</button>
+        <>
+          <IconButton onClick={() => handleDelete(row.id)} aria-label="delete">
+            <DeleteIcon />
+          </IconButton>
+        </>
       ),
     },
   ];
