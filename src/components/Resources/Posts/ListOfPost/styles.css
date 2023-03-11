@@ -1,0 +1,26 @@
+.dataTable {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 800px;
+  margin: 0 auto;
+}
+
+.inputSearch {
+  height: 2rem;
+  border: none;
+  border-radius: 8px;
+  margin: 2rem;
+  padding: 0.5rem 1rem;
+  box-shadow: 0 0 0 1px #ddd;
+  font-size: 1rem;
+  color: #333;
+  background-color: #f5f5f5;
+  transition: box-shadow 0.2s ease-in-out;
+}
+
+.inputSearch:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #AAAAAA;
+}
