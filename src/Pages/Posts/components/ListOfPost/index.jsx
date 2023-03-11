@@ -4,10 +4,11 @@ import DataTable from "react-data-table-component";
 import "./styles.css";
 
 import { AddPostBtn } from "../CreatePost";
-import { tableStyles } from "../../tableStyles";
+import { tableStyles } from "../../../../utils/tableStyles";
 
 import { IconButton } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { EditPostBtn } from "../EditPost";
 
 function ListOfPosts() {
   const [data, setData] = useState([]);
@@ -81,6 +82,7 @@ function ListOfPosts() {
             className="inputSearch"
           />
           <AddPostBtn data={data} setData={setData} />
+          <EditPostBtn post={data} setData={setData} />
         </div>
         <DataTable
           columns={columns}
@@ -88,6 +90,8 @@ function ListOfPosts() {
           selectableRows
           pagination
           customStyles={tableStyles}
+          // onSelectedRowsChange={onSelectedRowsChange}
+          noDataComponent="No se encuentra info"
         />
       </div>
     </>

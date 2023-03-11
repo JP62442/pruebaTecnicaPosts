@@ -1,6 +1,6 @@
 import React from "react";
-import { Header } from "../../Header";
-import { ListOfUsers } from "./ListOfUsers";
+import { Header } from "../../components/Header";
+import { ListOfUsers } from "./components/ListOfUsers";
 
 function Users() {
   return (

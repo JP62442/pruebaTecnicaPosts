@@ -3,7 +3,7 @@ import axios from "axios";
 import DataTable from "react-data-table-component";
 import "./styles.css";
 
-import { tableStyles } from "../../tableStyles";
+import { tableStyles } from "../../../../utils/tableStyles";
 import { IconButton } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 

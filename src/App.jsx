@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
 
-import { Posts } from "./components/Resources/Posts";
-import { Users } from "./components/Resources/Users";
+import { Posts } from "./Pages/Posts";
+import { Users } from "./Pages/Users";
 
 function App() {
   const [count, setCount] = useState(0);

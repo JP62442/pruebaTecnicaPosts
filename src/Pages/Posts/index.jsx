@@ -1,7 +1,7 @@
 import React from "react";
 
-import { Header } from "../../Header";
-import { ListOfPosts } from "./ListOfPost";
+import { Header } from "../../components/Header";
+import { ListOfPosts } from "./components/ListOfPost";
 
 function Posts() {
   return (
