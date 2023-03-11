@@ -10,11 +10,7 @@ function AddPostBtn({ data, setData }) {
   const [body, setBody] = useState("");
 
   const handleSubmit = () => {
-    const lastId = data.reduce((prev, current) => {
-      return prev.id > current.id ? prev : current;
-    }).id;
     const newPost = {
-      id: lastId + 1,
       title: title,
       body: body,
     };

@@ -10,21 +10,16 @@ import { IconButton } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { EditPostBtn } from "../EditPost";
 
+import { getPostsAPI } from "../../../../services/post";
+
 function ListOfPosts() {
   const [data, setData] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const [id, setId] = useState(1);
 
   useEffect(() => {
-    axios
-      .get("https://jsonplaceholder.typicode.com/posts")
-      .then((response) => {
-        setData(response.data);
-        setId(response.data.length + 1);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    getPostsAPI().then((response) =>{
+      setData(response.data)
+    })
   }, []);
 
   const filteredData = data.filter((row) =>
