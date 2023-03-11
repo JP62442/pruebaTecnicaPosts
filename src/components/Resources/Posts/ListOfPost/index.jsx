@@ -2,17 +2,21 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import DataTable from "react-data-table-component";
 import "./styles.css";
+
+import { AddPostBtn } from "../CreatePost";
 import { tableStyles } from "../../tableStyles";
 
 function ListOfPosts() {
   const [data, setData] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [id, setId] = useState(1);
 
   useEffect(() => {
     axios
       .get("https://jsonplaceholder.typicode.com/posts")
       .then((response) => {
         setData(response.data);
+        setId(response.data.length + 1);
       })
       .catch((error) => {
         console.log(error);
@@ -32,6 +36,7 @@ function ListOfPosts() {
     const newData = data.filter((row) => row.id !== id);
     setData(newData);
   };
+
   const columns = [
     {
       name: "Id",
@@ -60,13 +65,16 @@ function ListOfPosts() {
   return (
     <>
       <div className="dataTable">
-        <input
-          type="text"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          placeholder='Buscar.'
-          className="inputSearch"
-        />
+        <div className="navTable">
+          <input
+            type="text"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            placeholder="Buscar."
+            className="inputSearch"
+          />
+          <AddPostBtn data={data} setData={setData} />
+        </div>
         <DataTable
           columns={columns}
           data={filteredData}
