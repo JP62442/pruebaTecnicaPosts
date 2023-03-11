@@ -1,14 +1,15 @@
 import React from "react";
-import { Header } from "../../Header";
-import { ListOfUsers } from "./ListOfUsers";
 
-function Users() {
+import { Header } from "../../Header";
+import { ListOfPosts } from "./ListOfPost";
+
+function Posts() {
   return (
     <>
       <Header />
-      <ListOfUsers />
+      <ListOfPosts />
     </>
   );
 }
 
-export { Users };
+export { Posts };

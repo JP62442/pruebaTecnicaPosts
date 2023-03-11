@@ -1,5 +1,4 @@
-/* Estilos para el botón de menú */
-.menu-button {
+.menuBtn {
   position: absolute;
   top: 10px;
   left: 10px;
@@ -11,16 +10,15 @@
   z-index: 1000;
 }
 
-.menu-button:focus {
+.menuBtn:focus {
   outline: none;
 }
 
-.menu-button i {
+.menuBtn i {
   color: #fff;
   font-size: 1.5rem;
 }
 
-/* Estilos para el menú */
 .menu {
   position: fixed;
   top: 0;
@@ -53,9 +51,7 @@
   color: #000;
 }
 
-/* BtnCerra */
-
-.close-button {
+.closeBtn {
   position: absolute;
   top: 0;
   right: 0;
@@ -65,7 +61,7 @@
   padding: 10px;
 }
 
-.close-button svg {
+.closeBtn svg {
   width: 20px;
   height: 20px;
   fill: none;
@@ -73,12 +69,12 @@
   stroke-width: 2;
 }
 
-.close-button svg path {
+.closeBtn svg path {
   stroke-linecap: round;
   stroke-linejoin: round;
   transition: stroke-dasharray 0.2s ease-out;
 }
 
-.close-button:hover svg path {
+.closeBtn:hover svg path {
   stroke-dasharray: 20 40;
 }
