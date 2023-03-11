@@ -1,25 +1,24 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import DataTable from "react-data-table-component";
 import "./styles.css";
 
-import { AddPostBtn } from "../CreatePost";
 import { tableStyles } from "../../../../utils/tableStyles";
 
 import { IconButton } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { EditPostBtn } from "../EditPost";
+import Button from "@mui/material";
 
+import { EditPostBtn } from "../EditPost";
 import { getPostsAPI } from "../../../../services/post";
 
-function ListOfPosts() {
+function ListOfPosts({ handleModalOpen }) {
   const [data, setData] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
-    getPostsAPI().then((response) =>{
-      setData(response.data)
-    })
+    getPostsAPI().then((response) => {
+      setData(response.data);
+    });
   }, []);
 
   const filteredData = data.filter((row) =>
@@ -66,30 +65,30 @@ function ListOfPosts() {
   ];
 
   return (
-    <>
-      <div className="dataTable">
-        <div className="navTable">
-          <input
-            type="text"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            placeholder="Buscar."
-            className="inputSearch"
-          />
-          <AddPostBtn data={data} setData={setData} />
-          <EditPostBtn post={data} setData={setData} />
-        </div>
-        <DataTable
-          columns={columns}
-          data={filteredData}
-          selectableRows
-          pagination
-          customStyles={tableStyles}
-          // onSelectedRowsChange={onSelectedRowsChange}
-          noDataComponent="No se encuentra info"
+    <div className="dataTable">
+      <div className="navTable">
+        <input
+          type="text"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          placeholder="Buscar."
+          className="inputSearch"
         />
+        <Button onClick={handleModalOpen} variant="contained">
+          Añadir Post
+        </Button>
+        <EditPostBtn post={data} setData={setData} />
       </div>
-    </>
+      <DataTable
+        columns={columns}
+        data={filteredData}
+        selectableRows
+        pagination
+        customStyles={tableStyles}
+        // onSelectedRowsChange={onSelectedRowsChange}
+        noDataComponent="No se encuentra info"
+      />
+    </div>
   );
 }
 
