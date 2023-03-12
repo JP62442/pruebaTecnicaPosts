@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
 
+import toast, { Toaster } from "react-hot-toast";
+
 import { getPostsAPI, createPostAPI, updatePostAPI } from "../../services/post";
 
 import { TextField } from "@mui/material";
@@ -18,6 +20,9 @@ function Posts() {
   const [posts, setPosts] = useState([]);
 
   const [rows, setRows] = useState({});
+
+  const notifyError = () => toast.error("Algo ha salido mal");
+  const notifySuccess = () => toast.success("Cambios exitosos");
 
   const {
     control,
@@ -45,8 +50,10 @@ function Posts() {
       }
       handleModalClose();
       reset();
+      notifySuccess();
     } catch (error) {
       console.error(error);
+      notifyError(error.message);
     }
   };
 
@@ -73,6 +80,7 @@ function Posts() {
   return (
     <>
       <Header />
+      <Toaster position="bottom-center" reverseOrder={false} />
       <ListOfPosts
         posts={posts}
         setPosts={setPosts}

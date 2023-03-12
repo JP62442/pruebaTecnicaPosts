@@ -12,6 +12,7 @@ import { Button } from "@mui/material";
 import { deletePostAPI } from "../../../../services/post";
 
 import { paginationComponentOptions } from "../../../../utils/paginationOptions";
+import toast from "react-hot-toast";
 
 function ListOfPosts({
   posts,
@@ -22,6 +23,9 @@ function ListOfPosts({
   setIsEdit,
 }) {
   const [searchTerm, setSearchTerm] = useState("");
+
+  const notifySuccess = () => toast.success("Cambios exitosos");
+  const notifyError = () => toast.error("Algo ha salido mal");
 
   const filteredData = posts.filter((row) =>
     Object.values(row).some((value) =>
@@ -46,12 +50,11 @@ function ListOfPosts({
       const response = await deletePostAPI(idPost);
       const updatedPosts = posts.filter((post) => post.id !== idPost);
       setPosts(updatedPosts);
-
-      console.log(response);
+      notifySuccess();
     } catch (error) {
       console.error(error);
+      notifyError();
     }
-    console.log(idPost);
   };
 
   const columns = [
