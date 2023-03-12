@@ -6,7 +6,7 @@ import { tableStyles } from "../../../../utils/tableStyles";
 
 import { IconButton } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
-import Button from "@mui/material";
+import { Button } from "@mui/material";
 
 import { EditPostBtn } from "../EditPost";
 import { getPostsAPI } from "../../../../services/post";
