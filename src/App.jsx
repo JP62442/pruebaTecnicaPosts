@@ -1,18 +1,52 @@
+import React, { useEffect } from "react";
+import { Route, Routes, Navigate, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { Route, Routes, Navigate } from "react-router-dom";
+import { Login } from "./Pages/Login";
 
 import { Posts } from "./Pages/Posts";
-import { Users } from "./Pages/Users";
+
+import { auth } from "./firebase-config-js";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((loggedIn) => {
+      setLoggedIn(loggedIn);
+      setLoading(false);
+    });
+    return unsubscribe;
+  }, [auth]);
+
+  useEffect(() => {
+    if (loggedIn) {
+      navigate("/home");
+    }
+  }, [loggedIn, navigate]);
+
+  if (loading) {
+    return <h1>CARGANDO...</h1>;
+  }
 
   return (
     <>
       <Routes>
-        <Route path="/home" element={<Posts />} />
-        <Route path="/users" element={<Users />} />
-        <Route path="*" element={<Navigate to="/home" />} />
+        {loggedIn ? (
+          <>
+            <Route path="/home" element={<Posts />} />
+            <Route path="*" element={<Navigate to="/home" />} />
+          </>
+        ) : (
+          <>
+            <Route
+              path="/login"
+              element={<Login setLoggedIn={setLoggedIn} />}
+            />
+            <Route path="*" element={<Navigate to="/login" />} />
+          </>
+        )}
       </Routes>
     </>
   );

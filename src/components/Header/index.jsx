@@ -1,4 +1,5 @@
 import React from "react";
+import LogOutButton from "../LogOut";
 import { MenuButton } from "../MenuBtn";
 import "./styles.css";
 
@@ -6,12 +7,8 @@ function Header() {
   return (
     <>
       <header>
-          <MenuButton />
-        <nav>
-          <a href="#" className="logo">
-            PostView
-          </a>
-        </nav>
+        <MenuButton />
+        <LogOutButton />
       </header>
     </>
   );

@@ -47,7 +47,7 @@ function Menu({ onClose }) {
       </button>
       <ul>
         <Link
-          to={currentPath === "/home" ? "/users" : "/home"}
+          to={currentPath === "/home" ? "/login" : "/home"}
           onClick={onClose}
         >
           {currentPath === "/home" ? "Users" : "Home"}
