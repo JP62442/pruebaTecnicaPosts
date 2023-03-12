@@ -1,9 +1,8 @@
 :root {
-  --color1: #F4F9F9;
-  --color2: #CCF2F4;
-  --color3: #A4EBF3;
-  --color4: #AAAAAA;
-  
+  --color1: #f4f9f9;
+  --color2: #ccf2f4;
+  --color3: #a4ebf3;
+  --color4: #aaaaaa;
 }
 
 * {
@@ -16,4 +15,8 @@ body {
   height: 100vh;
   width: 100vw;
   background-color: var(--color1);
+}
+
+#root {
+  height: 100vh;
 }
