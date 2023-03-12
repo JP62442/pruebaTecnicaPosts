@@ -11,4 +11,14 @@ export async function getPostsAPI() {
   }
 }
 
-
+export async function createPostAPI(data) {
+  try {
+    const response = await axios.post(
+      "https://jsonplaceholder.typicode.com/posts",
+      { ...data, userId: 1 }
+    );
+    return response;
+  } catch (error) {
+    throw new Error(error);
+  }
+}
