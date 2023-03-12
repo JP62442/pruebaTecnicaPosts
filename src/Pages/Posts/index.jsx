@@ -74,7 +74,8 @@ function Posts() {
     <>
       <Header />
       <ListOfPosts
-        post={posts}
+        posts={posts}
+        setPosts={setPosts}
         handleModalOpen={handleModalOpen}
         rows={rows}
         setRows={setRows}

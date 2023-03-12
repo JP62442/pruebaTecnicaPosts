@@ -35,11 +35,10 @@ export async function updatePostAPI(data) {
   }
 }
 
-export async function deletePostAPI(data) {
+export async function deletePostAPI(idPost) {
   try {
     const response = await axios.delete(
-      "https://jsonplaceholder.typicode.com/posts",
-      { ...data }
+      `https://jsonplaceholder.typicode.com/posts/${idPost}`
     );
     return response;
   } catch (error) {

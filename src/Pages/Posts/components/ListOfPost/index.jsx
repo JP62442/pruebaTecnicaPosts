@@ -9,12 +9,21 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Button } from "@mui/material";
 
+import { deletePostAPI } from "../../../../services/post";
+
 import { paginationComponentOptions } from "../../../../utils/paginationOptions";
 
-function ListOfPosts({ post, handleModalOpen, rows, setRows, setIsEdit }) {
+function ListOfPosts({
+  posts,
+  setPosts,
+  handleModalOpen,
+  rows,
+  setRows,
+  setIsEdit,
+}) {
   const [searchTerm, setSearchTerm] = useState("");
 
-  const filteredData = post.filter((row) =>
+  const filteredData = posts.filter((row) =>
     Object.values(row).some((value) =>
       typeof value === "number"
         ? value === parseInt(searchTerm)
@@ -30,6 +39,19 @@ function ListOfPosts({ post, handleModalOpen, rows, setRows, setIsEdit }) {
 
   const onSelectedRowsChange = (row) => {
     setRows(row);
+  };
+
+  const onDelete = async (idPost) => {
+    try {
+      const response = await deletePostAPI(idPost);
+      const updatedPosts = posts.filter((post) => post.id !== idPost);
+      setPosts(updatedPosts);
+
+      console.log(response);
+    } catch (error) {
+      console.error(error);
+    }
+    console.log(idPost);
   };
 
   const columns = [
@@ -53,7 +75,7 @@ function ListOfPosts({ post, handleModalOpen, rows, setRows, setIsEdit }) {
       button: true,
       cell: (row) => (
         <>
-          <IconButton onClick={() => handleDelete(row.id)} aria-label="delete">
+          <IconButton onClick={() => onDelete(row.id)} aria-label="delete">
             <DeleteIcon />
           </IconButton>
         </>
