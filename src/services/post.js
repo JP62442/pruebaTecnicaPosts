@@ -22,3 +22,27 @@ export async function createPostAPI(data) {
     throw new Error(error);
   }
 }
+
+export async function updatePostAPI(data) {
+  try {
+    const response = await axios.put(
+      `https://jsonplaceholder.typicode.com/posts/${data.id}`,
+      data
+    );
+    return response;
+  } catch (error) {
+    throw new Error(error);
+  }
+}
+
+export async function deletePostAPI(data) {
+  try {
+    const response = await axios.delete(
+      "https://jsonplaceholder.typicode.com/posts",
+      { ...data }
+    );
+    return response;
+  } catch (error) {
+    throw new Error(error);
+  }
+}

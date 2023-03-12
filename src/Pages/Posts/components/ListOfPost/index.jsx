@@ -5,10 +5,13 @@ import "./styles.css";
 import { tableStyles } from "../../../../utils/tableStyles";
 
 import { IconButton } from "@mui/material";
+import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Button } from "@mui/material";
 
-function ListOfPosts({ post, handleModalOpen }) {
+import { paginationComponentOptions } from "../../../../utils/paginationOptions";
+
+function ListOfPosts({ post, handleModalOpen, rows, setRows, setIsEdit }) {
   const [searchTerm, setSearchTerm] = useState("");
 
   const filteredData = post.filter((row) =>
@@ -19,6 +22,16 @@ function ListOfPosts({ post, handleModalOpen }) {
           value.toLowerCase().includes(searchTerm.toLowerCase())
     )
   );
+
+  const handlerEdit = () => {
+    setIsEdit(true);
+    handleModalOpen();
+  };
+
+  const onSelectedRowsChange = (row) => {
+    setRows(row);
+  };
+
   const columns = [
     {
       name: "Id",
@@ -61,6 +74,12 @@ function ListOfPosts({ post, handleModalOpen }) {
         <Button onClick={handleModalOpen} variant="contained">
           Añadir Post
         </Button>
+
+        {rows.selectedCount === 1 && (
+          <IconButton onClick={handlerEdit}>
+            <EditIcon />
+          </IconButton>
+        )}
       </div>
       <DataTable
         columns={columns}
@@ -68,7 +87,8 @@ function ListOfPosts({ post, handleModalOpen }) {
         selectableRows
         pagination
         customStyles={tableStyles}
-        // onSelectedRowsChange={onSelectedRowsChange}
+        paginationComponentOptions={paginationComponentOptions}
+        onSelectedRowsChange={onSelectedRowsChange}
         noDataComponent="No se encuentra info"
       />
     </div>

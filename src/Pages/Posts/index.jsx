@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
 
-import { createPostAPI } from "../../services/post";
-import { getPostsAPI } from "../../services/post";
+import { getPostsAPI, createPostAPI, updatePostAPI } from "../../services/post";
 
 import { TextField } from "@mui/material";
 
@@ -14,8 +13,11 @@ import "./styles.css";
 
 function Posts() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isEdit, setIsEdit] = useState(false);
 
-  const [post, setPost] = useState([]);
+  const [posts, setPosts] = useState([]);
+
+  const [rows, setRows] = useState({});
 
   const {
     control,
@@ -29,30 +31,55 @@ function Posts() {
     },
   });
 
-  const onSubmit = (data) =>
-    createPostAPI(data).then((response) => {
-      setPost([...post, response.data]);
-      setIsModalOpen(false);
+  const onSubmit = async (data) => {
+    try {
+      if (isEdit) {
+        const response = await updatePostAPI(data);
+        const updatedPosts = posts.map((post) =>
+          post.id === response.data.id ? response.data : post
+        );
+        setPosts(updatedPosts);
+      } else {
+        const response = await createPostAPI(data);
+        setPosts([...posts, response.data]);
+      }
+      handleModalClose();
       reset();
-    });
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const handleModalOpen = () => {
     setIsModalOpen(true);
   };
   const handleModalClose = () => {
     setIsModalOpen(false);
+    setIsEdit(false);
   };
 
   useEffect(() => {
     getPostsAPI().then((response) => {
-      setPost(response.data);
+      setPosts(response.data);
     });
   }, []);
+
+  useEffect(() => {
+    if (isEdit) {
+      reset(rows.selectedRows[0]);
+    }
+  }, [isEdit]);
 
   return (
     <>
       <Header />
-      <ListOfPosts post={post} handleModalOpen={handleModalOpen} />
+      <ListOfPosts
+        post={posts}
+        handleModalOpen={handleModalOpen}
+        rows={rows}
+        setRows={setRows}
+        setIsEdit={setIsEdit}
+      />
       <Modal isOpen={isModalOpen} onClose={handleModalClose}>
         <form className="modalContent" onSubmit={handleSubmit(onSubmit)}>
           <Controller
@@ -85,7 +112,8 @@ function Posts() {
             )}
           />
           {errors.body && <span>Este campo es requerido</span>}
-          <button onClick={handleSubmit}>Add</button>
+
+          <button>{isEdit ? "Editar" : "Agregar"}</button>
         </form>
       </Modal>
     </>
