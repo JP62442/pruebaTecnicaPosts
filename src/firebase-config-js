@@ -1,0 +1,15 @@
+import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
+
+export const firebaseConfig = {
+  apiKey: "AIzaSyDQDDPtlkvI0w_ko16PLu8IW8o8jtT8QS4",
+  authDomain: "prueba-tecnicajp.firebaseapp.com",
+  projectId: "prueba-tecnicajp",
+  storageBucket: "prueba-tecnicajp.appspot.com",
+  messagingSenderId: "1021806961500",
+  appId: "1:1021806961500:web:ee28e3159bbeb77aec5799",
+  measurementId: "G-0TDHEZTMZ1",
+};
+
+export const app = initializeApp(firebaseConfig);
+export const auth = getAuth(app);
