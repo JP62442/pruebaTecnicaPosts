@@ -8,20 +8,10 @@ import { IconButton } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Button } from "@mui/material";
 
-import { EditPostBtn } from "../EditPost";
-import { getPostsAPI } from "../../../../services/post";
-
-function ListOfPosts({ handleModalOpen }) {
-  const [data, setData] = useState([]);
+function ListOfPosts({ post, handleModalOpen }) {
   const [searchTerm, setSearchTerm] = useState("");
 
-  useEffect(() => {
-    getPostsAPI().then((response) => {
-      setData(response.data);
-    });
-  }, []);
-
-  const filteredData = data.filter((row) =>
+  const filteredData = post.filter((row) =>
     Object.values(row).some((value) =>
       typeof value === "number"
         ? value === parseInt(searchTerm)
@@ -29,12 +19,6 @@ function ListOfPosts({ handleModalOpen }) {
           value.toLowerCase().includes(searchTerm.toLowerCase())
     )
   );
-
-  const handleDelete = (id) => {
-    const newData = data.filter((row) => row.id !== id);
-    setData(newData);
-  };
-
   const columns = [
     {
       name: "Id",
@@ -77,7 +61,6 @@ function ListOfPosts({ handleModalOpen }) {
         <Button onClick={handleModalOpen} variant="contained">
           Añadir Post
         </Button>
-        <EditPostBtn post={data} setData={setData} />
       </div>
       <DataTable
         columns={columns}

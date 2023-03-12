@@ -1,5 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
+
+import { createPostAPI } from "../../services/post";
+import { getPostsAPI } from "../../services/post";
 
 import { TextField } from "@mui/material";
 
@@ -12,10 +15,13 @@ import "./styles.css";
 function Posts() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const [post, setPost] = useState([]);
+
   const {
     control,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm({
     defaultValues: {
       title: "",
@@ -23,7 +29,12 @@ function Posts() {
     },
   });
 
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) =>
+    createPostAPI(data).then((response) => {
+      setPost([...post, response.data]);
+      setIsModalOpen(false);
+      reset();
+    });
 
   const handleModalOpen = () => {
     setIsModalOpen(true);
@@ -32,11 +43,16 @@ function Posts() {
     setIsModalOpen(false);
   };
 
+  useEffect(() => {
+    getPostsAPI().then((response) => {
+      setPost(response.data);
+    });
+  }, []);
+
   return (
     <>
       <Header />
-      <ListOfPosts handleModalOpen={handleModalOpen} />
-
+      <ListOfPosts post={post} handleModalOpen={handleModalOpen} />
       <Modal isOpen={isModalOpen} onClose={handleModalClose}>
         <form className="modalContent" onSubmit={handleSubmit(onSubmit)}>
           <Controller
