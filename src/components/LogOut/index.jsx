@@ -12,7 +12,7 @@ const LogOutButton = () => {
 
   return (
     <Button
-      sx={{ margin: "0 50px" }}
+      sx={{ margin: "0 auto" }}
       onClick={handleSignOut}
       variant="contained"
     >
