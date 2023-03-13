@@ -1,4 +1,4 @@
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { useForm, Controller } from "react-hook-form";
@@ -81,8 +81,6 @@ export const Login = () => {
 
           <StyledSubmitButton type="submit">Iniciar sesión</StyledSubmitButton>
         </StyledForm>
-
-        <Toaster position="bottom-center" reverseOrder={false} />
       </Box>
       <Typography variant="body2" color="text.secondary" align="center">
         {"Copyright © Prueba Técnica Juan Pablo "}

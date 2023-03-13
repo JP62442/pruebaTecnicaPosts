@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
 
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 
 import { getPostsAPI, createPostAPI, updatePostAPI } from "../../services/post";
 
@@ -82,7 +82,6 @@ export function Posts() {
   return (
     <>
       <Header />
-      <Toaster position="bottom-center" reverseOrder={false} />
       <ListOfPosts
         posts={posts}
         setPosts={setPosts}

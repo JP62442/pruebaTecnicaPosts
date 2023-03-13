@@ -3,6 +3,8 @@ import { Route, Routes, Navigate, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { Login } from "./Pages/Login";
 
+import { Toaster } from "react-hot-toast";
+
 import { Posts } from "./Pages/Posts";
 
 import { auth } from "./firebase-config-js";
@@ -47,6 +49,7 @@ export function App() {
             <Route path="*" element={<Navigate to="/login" />} />
           </>
         )}
+        <Toaster position="bottom-center" reverseOrder={false} />
       </Routes>
     </>
   );
