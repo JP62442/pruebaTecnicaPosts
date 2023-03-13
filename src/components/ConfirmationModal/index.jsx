@@ -12,8 +12,14 @@ export function ConfirmationModal({ open, onClose, message, onConfirm }) {
       <DialogTitle>Confirmar eliminación</DialogTitle>
       <DialogContent>{message}</DialogContent>
       <DialogActions>
-        <Button onClick={onClose}>Cancelar</Button>
-        <Button onClick={onConfirm} color="secondary">
+        <Button variant="outlined" onClick={onClose}>
+          Cancelar
+        </Button>
+        <Button
+          variant="outlined"
+          onClick={onConfirm}
+          style={{ borderColor: "red", color: "red" }}
+        >
           Eliminar
         </Button>
       </DialogActions>
