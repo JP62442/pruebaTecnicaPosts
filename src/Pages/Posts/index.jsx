@@ -21,6 +21,8 @@ function Posts() {
 
   const [rows, setRows] = useState({});
 
+  const [toggledClearRows, setToggledClearRows] = useState(false);
+
   const notifyError = () => toast.error("Algo ha salido mal");
   const notifySuccess = () => toast.success("Cambios exitosos");
 
@@ -44,12 +46,12 @@ function Posts() {
           post.id === response.data.id ? response.data : post
         );
         setPosts(updatedPosts);
+        setToggledClearRows(!toggledClearRows);
       } else {
         const response = await createPostAPI(data);
         setPosts([...posts, response.data]);
       }
       handleModalClose();
-      reset();
       notifySuccess();
     } catch (error) {
       console.error(error);
@@ -63,6 +65,7 @@ function Posts() {
   const handleModalClose = () => {
     setIsModalOpen(false);
     setIsEdit(false);
+    reset({ title: "", body: "" });
   };
 
   useEffect(() => {
@@ -88,6 +91,7 @@ function Posts() {
         rows={rows}
         setRows={setRows}
         setIsEdit={setIsEdit}
+        toggledClearRows={toggledClearRows}
       />
       <Modal isOpen={isModalOpen} onClose={handleModalClose}>
         <form className="modalContent" onSubmit={handleSubmit(onSubmit)}>

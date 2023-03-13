@@ -21,6 +21,7 @@ function ListOfPosts({
   rows,
   setRows,
   setIsEdit,
+  toggledClearRows,
 }) {
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -109,6 +110,7 @@ function ListOfPosts({
       <DataTable
         columns={columns}
         data={filteredData}
+        clearSelectedRows={toggledClearRows}
         selectableRows
         pagination
         customStyles={tableStyles}
