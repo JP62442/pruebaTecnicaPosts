@@ -49,8 +49,8 @@ export function App() {
             <Route path="*" element={<Navigate to="/login" />} />
           </>
         )}
-        <Toaster position="bottom-center" reverseOrder={false} />
       </Routes>
+      <Toaster position="bottom-center" reverseOrder={false} />
     </>
   );
 }

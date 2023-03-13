@@ -1,19 +1,19 @@
 import { useState } from "react";
 import DataTable from "react-data-table-component";
-import "./styles.css";
 
 import { tableStyles } from "../../../../utils/tableStyles";
 
 import { IconButton } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { Button } from "@mui/material";
+import { Button, Box } from "@mui/material";
 
 import { deletePostAPI } from "../../../../services/post";
 
 import { paginationComponentOptions } from "../../../../utils/paginationOptions";
 import toast from "react-hot-toast";
 import { ConfirmationModal } from "../../../../components/ConfirmationModal";
+import { InputSearch } from "../InputSearch";
 
 export function ListOfPosts({
   posts,
@@ -100,43 +100,59 @@ export function ListOfPosts({
   ];
 
   return (
-    <div className="dataTable">
-      <div className="navTable">
-        <input
-          type="text"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          placeholder="Buscar."
-          className="inputSearch"
+    <>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          alignitems: "center",
+          justifycontent: "center",
+          width: "800px",
+          margin: "0 auto",
+        }}
+      >
+        <Box
+          sx={{
+            marginTop: "70px",
+            marginBottom: "15px",
+            width: "100%",
+            height: "50px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-evenly",
+          }}
+        >
+          <InputSearch searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+          <Button onClick={handleDrawerOpen} variant="outlined">
+            Añadir Post
+          </Button>
+          <Box>
+            {rows.selectedCount === 1 && (
+              <IconButton onClick={handlerEdit}>
+                <EditIcon />
+              </IconButton>
+            )}
+          </Box>
+        </Box>
+        <DataTable
+          columns={columns}
+          data={filteredData}
+          clearSelectedRows={toggledClearRows}
+          selectableRows
+          selectableRowsSingle
+          pagination
+          customStyles={tableStyles}
+          paginationComponentOptions={paginationComponentOptions}
+          onSelectedRowsChange={onSelectedRowsChange}
+          noDataComponent="No se encuentra info"
         />
-        <Button onClick={handleDrawerOpen} variant="contained">
-          Añadir Post
-        </Button>
-
-        {rows.selectedCount === 1 && (
-          <IconButton onClick={handlerEdit}>
-            <EditIcon />
-          </IconButton>
-        )}
-      </div>
-      <DataTable
-        columns={columns}
-        data={filteredData}
-        clearSelectedRows={toggledClearRows}
-        selectableRows
-        selectableRowsSingle
-        pagination
-        customStyles={tableStyles}
-        paginationComponentOptions={paginationComponentOptions}
-        onSelectedRowsChange={onSelectedRowsChange}
-        noDataComponent="No se encuentra info"
-      />
-      <ConfirmationModal
-        open={openConfirmationModal}
-        onClose={() => setOpenConfirmationModal(false)}
-        message="¿Estás seguro de que quieres eliminar este elemento?"
-        onConfirm={() => onDelete(postId)}
-      />
-    </div>
+        <ConfirmationModal
+          open={openConfirmationModal}
+          onClose={() => setOpenConfirmationModal(false)}
+          message="¿Estás seguro de que quieres eliminar este elemento?"
+          onConfirm={() => onDelete(postId)}
+        />
+      </Box>
+    </>
   );
 }
