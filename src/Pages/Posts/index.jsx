@@ -148,7 +148,7 @@ export function Posts() {
             )}
           </div>
 
-          <Button type="submit" variant="contained" color="primary">
+          <Button type="submit" variant="outlined" color="primary">
             {isEdit ? "Editar" : "Agregar"}
           </Button>
         </form>
