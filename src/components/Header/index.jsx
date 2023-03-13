@@ -1,4 +1,3 @@
-import React from "react";
 import LogOutButton from "../LogOut";
 
 import "./styles.css";

@@ -1,4 +1,3 @@
-import React from "react";
 import { auth } from "../../firebase-config-js";
 
 import Button from "@mui/material/Button";

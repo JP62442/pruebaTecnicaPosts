@@ -1,7 +1,6 @@
-import React from "react";
-import './styles.css'
+import "./styles.css";
 
-function Modal({ isOpen, onClose, children }) {
+export function Modal({ isOpen, onClose, children }) {
   if (!isOpen) return null;
 
   return (
@@ -15,5 +14,3 @@ function Modal({ isOpen, onClose, children }) {
     </div>
   );
 }
-
-export { Modal };

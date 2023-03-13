@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
 
 import toast, { Toaster } from "react-hot-toast";
@@ -13,7 +13,7 @@ import { Modal } from "./components/Modal";
 
 import "./styles.css";
 
-function Posts() {
+export function Posts() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
 
@@ -131,5 +131,3 @@ function Posts() {
     </>
   );
 }
-
-export { Posts };

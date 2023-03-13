@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { Route, Routes, Navigate, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { Login } from "./Pages/Login";
@@ -7,7 +7,7 @@ import { Posts } from "./Pages/Posts";
 
 import { auth } from "./firebase-config-js";
 
-function App() {
+export function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
@@ -51,5 +51,3 @@ function App() {
     </>
   );
 }
-
-export default App;

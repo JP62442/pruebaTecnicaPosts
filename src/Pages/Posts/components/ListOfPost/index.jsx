@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState } from "react";
 import DataTable from "react-data-table-component";
 import "./styles.css";
 
@@ -14,7 +14,7 @@ import { deletePostAPI } from "../../../../services/post";
 import { paginationComponentOptions } from "../../../../utils/paginationOptions";
 import toast from "react-hot-toast";
 
-function ListOfPosts({
+export function ListOfPosts({
   posts,
   setPosts,
   handleModalOpen,
@@ -120,5 +120,3 @@ function ListOfPosts({
     </div>
   );
 }
-
-export { ListOfPosts };
