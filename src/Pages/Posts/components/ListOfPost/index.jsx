@@ -13,6 +13,7 @@ import { deletePostAPI } from "../../../../services/post";
 
 import { paginationComponentOptions } from "../../../../utils/paginationOptions";
 import toast from "react-hot-toast";
+import { ConfirmationModal } from "../../../../components/ConfirmationModal";
 
 export function ListOfPosts({
   posts,
@@ -22,8 +23,11 @@ export function ListOfPosts({
   setRows,
   setIsEdit,
   toggledClearRows,
+  setToggledClearRows,
 }) {
   const [searchTerm, setSearchTerm] = useState("");
+  const [openConfirmationModal, setOpenConfirmationModal] = useState(false);
+  const [postId, setPostId] = useState(null);
 
   const notifySuccess = () => toast.success("Cambios exitosos");
   const notifyError = () => toast.error("Algo ha salido mal");
@@ -52,6 +56,9 @@ export function ListOfPosts({
       const updatedPosts = posts.filter((post) => post.id !== idPost);
       setPosts(updatedPosts);
       notifySuccess();
+      setToggledClearRows(!toggledClearRows);
+      setRows({});
+      setOpenConfirmationModal(false);
     } catch (error) {
       notifyError();
     }
@@ -78,7 +85,13 @@ export function ListOfPosts({
       button: true,
       cell: (row) => (
         <>
-          <IconButton onClick={() => onDelete(row.id)} aria-label="delete">
+          <IconButton
+            onClick={() => {
+              setPostId(row.id);
+              setOpenConfirmationModal(true);
+            }}
+            aria-label="delete"
+          >
             <DeleteIcon />
           </IconButton>
         </>
@@ -111,11 +124,18 @@ export function ListOfPosts({
         data={filteredData}
         clearSelectedRows={toggledClearRows}
         selectableRows
+        selectableRowsSingle
         pagination
         customStyles={tableStyles}
         paginationComponentOptions={paginationComponentOptions}
         onSelectedRowsChange={onSelectedRowsChange}
         noDataComponent="No se encuentra info"
+      />
+      <ConfirmationModal
+        open={openConfirmationModal}
+        onClose={() => setOpenConfirmationModal(false)}
+        message="¿Estás seguro de que quieres eliminar este elemento?"
+        onConfirm={() => onDelete(postId)}
       />
     </div>
   );

@@ -91,6 +91,7 @@ export function Posts() {
         setRows={setRows}
         setIsEdit={setIsEdit}
         toggledClearRows={toggledClearRows}
+        setToggledClearRows={setToggledClearRows}
       />
       <Modal isOpen={isModalOpen} onClose={handleModalClose}>
         <form className="modalContent" onSubmit={handleSubmit(onSubmit)}>
