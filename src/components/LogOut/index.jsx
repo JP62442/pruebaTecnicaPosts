@@ -5,9 +5,7 @@ import Button from "@mui/material/Button";
 
 const LogOutButton = () => {
   const handleSignOut = () => {
-    auth.signOut().then(() => {
-      console.log("Usuario desconectado");
-    });
+    auth.signOut();
   };
 
   return (

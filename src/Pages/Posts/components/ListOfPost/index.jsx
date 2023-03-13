@@ -53,7 +53,6 @@ function ListOfPosts({
       setPosts(updatedPosts);
       notifySuccess();
     } catch (error) {
-      console.error(error);
       notifyError();
     }
   };
