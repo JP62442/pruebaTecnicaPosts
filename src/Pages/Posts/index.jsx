@@ -54,7 +54,6 @@ function Posts() {
       handleModalClose();
       notifySuccess();
     } catch (error) {
-      console.error(error);
       notifyError(error.message);
     }
   };
