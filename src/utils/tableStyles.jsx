@@ -1,4 +1,4 @@
-const tableStyles = {
+export const tableStyles = {
   table: {
     style: {
       color: "#333",
@@ -18,7 +18,7 @@ const tableStyles = {
       paddingTop: "12px",
       paddingBottom: "12px",
       textAlign: "center",
-      backgroundColor: "#A4EBF3",
+      backgroundColor: "#37aade",
       color: "#FFF",
       borderRight: "1px solid #E0E0E0",
     },
@@ -34,7 +34,6 @@ const tableStyles = {
       borderRight: "1px solid #E0E0E0",
       width: "50px",
     },
-
   },
   rows: {
     style: {
@@ -48,4 +47,3 @@ const tableStyles = {
     },
   },
 };
-export { tableStyles };

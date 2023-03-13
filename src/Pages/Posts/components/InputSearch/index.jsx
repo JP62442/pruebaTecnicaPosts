@@ -5,7 +5,7 @@ export const InputSearch = ({ searchTerm, setSearchTerm }) => {
     <TextField
       variant="outlined"
       size="medium"
-      placeholder="Buscar."
+      placeholder="Buscar en la lista."
       InputProps={{
         style: {
           height: "2rem",
