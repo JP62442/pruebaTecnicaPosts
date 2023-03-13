@@ -33,61 +33,68 @@ export const Login = () => {
   };
 
   return (
-    <Box height="100vh" textAlign="center">
-      <Box padding="20vh">
-        <LockOpenIcon fontSize="large" />
-        <Typography variant="h5" gutterBottom marginBottom="50px">
-          Iniciar sesión
-        </Typography>
-        <StyledForm onSubmit={handleSubmit(onSubmit)}>
-          <StyledInputWrapper>
-            <Controller
-              name="email"
-              rules={{ required: true }}
-              control={control}
-              render={({ field }) => (
-                <TextField
-                  id="email"
-                  label="Email*"
-                  error={errors.email ? true : false}
-                  variant="outlined"
-                  {...field}
-                />
+    <Box>
+      <Box height="90vh" textAlign="center">
+        <Box padding="15vh 0">
+          <LockOpenIcon fontSize="large" />
+          <Typography variant="h5" gutterBottom marginBottom="50px">
+            Iniciar sesión
+          </Typography>
+          <StyledForm onSubmit={handleSubmit(onSubmit)}>
+            <StyledInputWrapper>
+              <Controller
+                name="email"
+                rules={{ required: true }}
+                control={control}
+                render={({ field }) => (
+                  <TextField
+                    id="email"
+                    label="Email*"
+                    error={errors.email ? true : false}
+                    variant="outlined"
+                    {...field}
+                  />
+                )}
+              />
+              {errors.email && (
+                <StyledError>Este campo es requerido</StyledError>
               )}
-            />
-            {errors.email && <StyledError>Este campo es requerido</StyledError>}
-          </StyledInputWrapper>
+            </StyledInputWrapper>
 
-          <StyledInputWrapper>
-            <Controller
-              name="password"
-              rules={{ required: true }}
-              control={control}
-              render={({ field }) => (
-                <TextField
-                  id="password"
-                  label="Contraseña*"
-                  variant="outlined"
-                  error={errors.password ? true : false}
-                  type="password"
-                  {...field}
-                />
+            <StyledInputWrapper>
+              <Controller
+                name="password"
+                rules={{ required: true }}
+                control={control}
+                render={({ field }) => (
+                  <TextField
+                    id="password"
+                    label="Contraseña*"
+                    variant="outlined"
+                    error={errors.password ? true : false}
+                    type="password"
+                    {...field}
+                  />
+                )}
+              />
+              {errors.password && (
+                <StyledError>Este campo es requerido</StyledError>
               )}
-            />
-            {errors.password && (
-              <StyledError>Este campo es requerido</StyledError>
-            )}
-          </StyledInputWrapper>
+            </StyledInputWrapper>
 
-          <StyledSubmitButton type="submit">Iniciar sesión</StyledSubmitButton>
-        </StyledForm>
+            <Button variant="outlined" type="submit">
+              Iniciar sesión
+            </Button>
+          </StyledForm>
+        </Box>
       </Box>
-      <Typography variant="body2" color="text.secondary" align="center">
-        {"Copyright © Prueba Técnica Juan Pablo "}
-
-        {new Date().getFullYear()}
-        {"."}
-      </Typography>
+      <Box paddingBottom="20px">
+        <Typography variant="body2" color="text.secondary" align="center">
+          {"Copyright © Prueba Técnica Juan Pablo "}
+          {new Date().getFullYear()}
+          {"."}
+        </Typography>
+      </Box>
     </Box>
   );
 };
@@ -114,12 +121,4 @@ const StyledLabel = styled("label")({
 const StyledError = styled("span")({
   color: "red",
   fontSize: "14px",
-});
-
-const StyledSubmitButton = styled(Button)({
-  background: "#2196f3",
-  color: "#fff",
-  "&:hover": {
-    background: "#0d8bf2",
-  },
 });
