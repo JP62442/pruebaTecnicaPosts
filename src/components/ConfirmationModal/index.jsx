@@ -9,7 +9,7 @@ import {
 export function ConfirmationModal({ open, onClose, message, onConfirm }) {
   return (
     <Dialog open={open} onClose={onClose}>
-      <DialogTitle>Confirmar eliminación</DialogTitle>
+      <DialogTitle>Confirmar acción.</DialogTitle>
       <DialogContent>{message}</DialogContent>
       <DialogActions>
         <Button variant="outlined" onClick={onClose}>
