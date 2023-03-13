@@ -1,13 +1,11 @@
 <img src="https://sier.com.co/wp-content/uploads/2020/01/logo2.svg" alt="Logo SIER" width="20%"/>
 
-[TOCM]
-
-#Technical Test
-######By Juan Pablo Cardona Duque
+Technical Test
+By Juan Pablo Cardona Duque
 
 **https://prueba-tecnicajp.web.app**
 
-##Installation.
+## Installation.
 
 - In the terminal you can clone the repository:
   `git clone https://github.com/JP62442/pruebaTecnicaPosts.git`
@@ -45,7 +43,7 @@ Password:
 
 **Users will receive constant feedback as they interact with the application. All interactions with the list are done directly through the API.**
 
-##Technologies used.
+## Technologies used.
 
 - Vite.
 - ReactJS.
