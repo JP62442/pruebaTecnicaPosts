@@ -78,7 +78,6 @@ export const Login = () => {
         </Typography>
         <StyledForm onSubmit={handleSubmit(onSubmit)}>
           <StyledInputWrapper>
-            <StyledLabel htmlFor="email">Email:</StyledLabel>
             <Controller
               name="email"
               rules={{ required: true }}
@@ -87,6 +86,7 @@ export const Login = () => {
                 <TextField
                   id="email"
                   label="Email"
+                  error={errors.email ? true : false}
                   variant="outlined"
                   {...field}
                 />
@@ -96,7 +96,6 @@ export const Login = () => {
           </StyledInputWrapper>
 
           <StyledInputWrapper>
-            <StyledLabel htmlFor="password">Contraseña:</StyledLabel>
             <Controller
               name="password"
               rules={{ required: true }}
@@ -106,6 +105,7 @@ export const Login = () => {
                   id="password"
                   label="Contraseña"
                   variant="outlined"
+                  error={errors.password ? true : false}
                   type="password"
                   {...field}
                 />
@@ -119,9 +119,14 @@ export const Login = () => {
           <StyledSubmitButton type="submit">Iniciar sesión</StyledSubmitButton>
         </StyledForm>
 
-        {error && <div>{"Cuenta invalida, intenta otra vez."}</div>}
         <Toaster position="bottom-center" reverseOrder={false} />
       </Box>
+      <Typography variant="body2" color="text.secondary" align="center">
+        {"Copyright © Prueba Técnica Juan Pablo "}
+
+        {new Date().getFullYear()}
+        {"."}
+      </Typography>
     </Box>
   );
 };
