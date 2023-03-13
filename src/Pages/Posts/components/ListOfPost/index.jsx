@@ -18,7 +18,7 @@ import { ConfirmationModal } from "../../../../components/ConfirmationModal";
 export function ListOfPosts({
   posts,
   setPosts,
-  handleModalOpen,
+  handleDrawerOpen,
   rows,
   setRows,
   setIsEdit,
@@ -43,7 +43,7 @@ export function ListOfPosts({
 
   const handlerEdit = () => {
     setIsEdit(true);
-    handleModalOpen();
+    handleDrawerOpen();
   };
 
   const onSelectedRowsChange = (row) => {
@@ -109,7 +109,7 @@ export function ListOfPosts({
           placeholder="Buscar."
           className="inputSearch"
         />
-        <Button onClick={handleModalOpen} variant="contained">
+        <Button onClick={handleDrawerOpen} variant="contained">
           Añadir Post
         </Button>
 

@@ -9,12 +9,12 @@ import { TextField } from "@mui/material";
 
 import { Header } from "../../components/Header";
 import { ListOfPosts } from "./components/ListOfPost";
-import { Modal } from "./components/Modal";
+import { Drawer, Button } from "@mui/material";
 
 import "./styles.css";
 
 export function Posts() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
 
   const [posts, setPosts] = useState([]);
@@ -51,18 +51,18 @@ export function Posts() {
         const response = await createPostAPI(data);
         setPosts([...posts, response.data]);
       }
-      handleModalClose();
+      handleDrawerClose();
       notifySuccess();
     } catch (error) {
       notifyError(error.message);
     }
   };
 
-  const handleModalOpen = () => {
-    setIsModalOpen(true);
+  const handleDrawerOpen = () => {
+    setIsDrawerOpen(true);
   };
-  const handleModalClose = () => {
-    setIsModalOpen(false);
+  const handleDrawerClose = () => {
+    setIsDrawerOpen(false);
     setIsEdit(false);
     reset({ title: "", body: "" });
   };
@@ -86,49 +86,74 @@ export function Posts() {
       <ListOfPosts
         posts={posts}
         setPosts={setPosts}
-        handleModalOpen={handleModalOpen}
+        handleDrawerOpen={handleDrawerOpen}
         rows={rows}
         setRows={setRows}
         setIsEdit={setIsEdit}
         toggledClearRows={toggledClearRows}
         setToggledClearRows={setToggledClearRows}
       />
-      <Modal isOpen={isModalOpen} onClose={handleModalClose}>
-        <form className="modalContent" onSubmit={handleSubmit(onSubmit)}>
-          <Controller
-            name="title"
-            rules={{ required: true }}
-            control={control}
-            render={({ field }) => (
-              <TextField
-                label="Título"
-                variant="outlined"
-                error={errors.title ? true : false}
-                {...field}
-              />
+      <Drawer anchor="right" open={isDrawerOpen} onClose={handleDrawerClose}>
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          style={{
+            display: "flex",
+            minWidth: "300px",
+            padding: "80px",
+            flexDirection: "column",
+            justifyContent: "center",
+            height: "100%",
+          }}
+        >
+          <div style={{ marginBottom: "20px" }}>
+            <Controller
+              name="title"
+              rules={{ required: true }}
+              control={control}
+              render={({ field }) => (
+                <TextField
+                  multiline
+                  rows={3}
+                  label="Título"
+                  variant="outlined"
+                  error={errors.title ? true : false}
+                  style={{ width: "100%" }}
+                  {...field}
+                />
+              )}
+            />
+            {errors.title && (
+              <span style={{ color: "red" }}>Este campo es requerido</span>
             )}
-          />
-          {errors.title && <span>Este campo es requerido</span>}
+          </div>
 
-          <Controller
-            name="body"
-            rules={{ required: true }}
-            control={control}
-            render={({ field }) => (
-              <TextField
-                multiline
-                label="Cuerpo"
-                variant="outlined"
-                error={errors.body ? true : false}
-                {...field}
-              />
+          <div style={{ marginBottom: "20px" }}>
+            <Controller
+              name="body"
+              rules={{ required: true }}
+              control={control}
+              render={({ field }) => (
+                <TextField
+                  multiline
+                  rows={13}
+                  label="Cuerpo"
+                  variant="outlined"
+                  error={errors.body ? true : false}
+                  style={{ width: "100%" }}
+                  {...field}
+                />
+              )}
+            />
+            {errors.body && (
+              <span style={{ color: "red" }}>Este campo es requerido</span>
             )}
-          />
-          {errors.body && <span>Este campo es requerido</span>}
+          </div>
 
-          <button>{isEdit ? "Editar" : "Agregar"}</button>
+          <Button type="submit" variant="contained" color="primary">
+            {isEdit ? "Editar" : "Agregar"}
+          </Button>
         </form>
-      </Modal>
+      </Drawer>
     </>
   );
 }
