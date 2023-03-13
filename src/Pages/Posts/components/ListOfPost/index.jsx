@@ -71,17 +71,17 @@ export function ListOfPosts({
       sortable: true,
     },
     {
-      name: "Title",
+      name: "Título",
       selector: (row) => row.title,
       sortable: true,
     },
     {
-      name: "Body",
+      name: "Cuerpo",
       selector: (row) => row.body,
       sortable: true,
     },
     {
-      name: "Delete",
+      name: "Eliminar",
       button: true,
       cell: (row) => (
         <>
