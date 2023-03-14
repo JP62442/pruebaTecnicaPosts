@@ -41,7 +41,7 @@ Password:
 - Edit existing posts.
 - Log out when you are done.
 
-<img src="https://imagizer.imageshack.com/img924/1448/iiTphR.png" alt="Logo SIER" width="70%"/>
+[![gif.gif](https://i.postimg.cc/DwWVdLqM/gif.gif)](https://postimg.cc/68N1B7br)
 
 **Users will receive constant feedback as they interact with the application. All interactions with the list are done directly through the API.**
 
