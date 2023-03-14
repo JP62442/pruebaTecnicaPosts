@@ -6,7 +6,13 @@ import {
   DialogTitle,
 } from "@mui/material";
 
-export function ConfirmationModal({ open, onClose, message, onConfirm }) {
+export function ConfirmationModal({
+  open,
+  onClose,
+  message,
+  onConfirm,
+  confirmationBtn,
+}) {
   return (
     <Dialog open={open} onClose={onClose}>
       <DialogTitle>Confirmar acción.</DialogTitle>
@@ -20,7 +26,7 @@ export function ConfirmationModal({ open, onClose, message, onConfirm }) {
           onClick={onConfirm}
           style={{ borderColor: "red", color: "red" }}
         >
-          Eliminar
+          {confirmationBtn}
         </Button>
       </DialogActions>
     </Dialog>

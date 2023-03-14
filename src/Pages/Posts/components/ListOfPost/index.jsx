@@ -151,6 +151,7 @@ export function ListOfPosts({
           onClose={() => setOpenConfirmationModal(false)}
           message="¿Estás seguro de que quieres eliminar este elemento?"
           onConfirm={() => onDelete(postId)}
+          confirmationBtn="Eliminar"
         />
       </Box>
     </>

@@ -38,6 +38,7 @@ export function Header() {
               onClose={() => setOpenConfirmationModal(false)}
               message="¿Estás seguro de que quieres cerrar sesión?"
               onConfirm={() => handleSignOut()}
+              confirmationBtn="Cerrar sesión"
             />
           </Toolbar>
         </AppBar>
