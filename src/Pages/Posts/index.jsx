@@ -11,8 +11,6 @@ import { Header } from "../../components/Header";
 import { ListOfPosts } from "./components/ListOfPost";
 import { Drawer, Button } from "@mui/material";
 
-import "./styles.css";
-
 export function Posts() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
