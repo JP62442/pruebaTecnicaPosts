@@ -3,6 +3,8 @@
 Technical Test
 By Juan Pablo Cardona Duque
 
+![Status badge](https://img.shields.io/badge/status-Finished-green)
+
 **https://prueba-tecnicajp.web.app**
 
 ## Installation.
@@ -50,9 +52,6 @@ Password:
 - React Hooks.
 - React Router.
 - React hook form.
-- React hot toast.
-- React data table.
-- CSS.
 - Axios.
 - Material UI.
 - Firebase.
