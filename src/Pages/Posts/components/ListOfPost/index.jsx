@@ -107,7 +107,7 @@ export function ListOfPosts({
           flexDirection: "column",
           alignitems: "center",
           justifycontent: "center",
-          width: "800px",
+          maxWidth: "800px",
           margin: "0 auto",
         }}
       >
