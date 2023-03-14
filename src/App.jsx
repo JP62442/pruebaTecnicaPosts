@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Login } from "./Pages/Login";
 
 import { Toaster } from "react-hot-toast";
+import { CircularProgress } from "@mui/material";
 
 import { Posts } from "./Pages/Posts";
 
@@ -29,7 +30,18 @@ export function App() {
   }, [loggedIn, navigate]);
 
   if (loading) {
-    return <h1>CARGANDO...</h1>;
+    return (
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh",
+        }}
+      >
+        <CircularProgress />
+      </div>
+    );
   }
 
   return (
